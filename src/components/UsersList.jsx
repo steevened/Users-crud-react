@@ -1,12 +1,14 @@
 import React from 'react'
 
-const UsersList = ({ users, deleteUser, setAdd, select }) => {
+const UsersList = ({ users, deleteModal, setAdd, select, selected }) => {
   return (
     <ul className='text-gray-300  px-5 py-3 mx-2  flex flex-col  gap-5'>
       {users?.map((user) => (
         <li
           key={user?.id}
-          className='bg-slate-700/60 shadow-slate-900  px-5 flex items-center justify-between py-2 rounded shadow-md  hover:scale-[1.008] hover:shadow-lg transition-all'
+          className={`${
+            selected?.id === user.id ? 'animate-pulse' : ''
+          } bg-slate-700/60 shadow-slate-900  px-5 flex items-center justify-between py-2 rounded shadow-lg`}
         >
           <div>
             <h2 className='text-2xl font-bold'>
@@ -28,7 +30,7 @@ const UsersList = ({ users, deleteUser, setAdd, select }) => {
           <div className='flex gap-3'>
             <button
               className='text-sky-700 '
-              onClick={() => deleteUser(user?.id)}
+              onClick={() => deleteModal(user?.id)}
             >
               <i className='fa-regular fa-trash-can'></i>
             </button>

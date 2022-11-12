@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 
-const UsersForm = ({ getUsers, setAdd }) => {
-  const { register, handleSubmit } = useForm()
+const UsersForm = ({ getUsers, setAdd, selected, unSelect }) => {
+  const { register, handleSubmit, reset } = useForm()
+
+  const initialValues = {
+    email: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    birthday: '',
+  }
+
+  useEffect(() => {
+    if (selected) {
+      reset(selected)
+    } else {
+      reset(initialValues)
+    }
+  }, [selected])
+
+  const alert = () => {
+    Swal.fire({
+      title: 'Done',
+      text: selected ? 'User edited succesfully!' : 'User added succesfully!',
+      icon: 'success',
+      showConfirmButton: true,
+      timer: 2000,
+      background: '#0f172a',
+      color: '#d1d5db',
+    })
+  }
 
   const postUsers = (data) => {
     axios
@@ -12,36 +40,38 @@ const UsersForm = ({ getUsers, setAdd }) => {
       .then(() => getUsers())
   }
 
-  const alert = () => {
-    Swal.fire({
-      title: 'Done',
-      text: 'User added succesfully!',
-      icon: 'success',
-      showConfirmButton: true,
-      // timer: 2000,
-      background: '#0f172a',
-      color: '#d1d5db',
-    })
-  }
-
   const submit = (data) => {
-    postUsers(data)
+    if (selected) {
+      axios
+        .put(`https://users-crud1.herokuapp.com/users/${selected.id}/`, data)
+        .then(() => {
+          unSelect()
+          getUsers()
+        })
+    } else {
+      postUsers(data)
+    }
     setAdd(false)
     alert()
   }
+
+  console.log(selected)
 
   return (
     <div className='overflow-y-auto bg-slate-900/70 fixed top-0 left-0 right-0 bottom-0 overflow-x-hidden jumper z-10'>
       <div
         className='fixed top-0 left-0 right-0 bottom-0 z-20'
-        onClick={() => setAdd(false)}
+        onClick={() => {
+          setAdd(false)
+          unSelect()
+        }}
       ></div>
       <form
         onSubmit={handleSubmit(submit)}
         className='bg-slate-900 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-5 rounded-[5px] shadow-lg shadow-slate-900 w-[400px] z-30  md:w-[512px] h-[345px] lg-h-[352px] pb-0  transition-transform '
       >
         <h2 className='text-3xl text-center text-gray-300 py-3 font-bold'>
-          Add User
+          {selected ? 'Edit User' : 'Add User'}
         </h2>
         <div className='w-full flex flex-col md:flex-row gap-3 md:gap-3 '>
           <input
@@ -94,7 +124,10 @@ const UsersForm = ({ getUsers, setAdd }) => {
           <button
             className='py-[3px] px-3 rounded shadow-md shadow-gray-900 bg-red-900 mt-1 md:mt-5'
             type='submit'
-            onClick={() => setAdd(false)}
+            onClick={() => {
+              setAdd(false)
+              unSelect()
+            }}
           >
             Cancel
           </button>

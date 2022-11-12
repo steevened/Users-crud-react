@@ -17,6 +17,41 @@ function App() {
       .then((res) => setUsers(res.data))
   }
 
+  const deleteModal = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: '#0c4a6e',
+      cancelButtonText: 'No, cancel!',
+      cancelButtonColor: '#7f1d1d',
+      background: '#0f172a',
+      color: '#d1d5db',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'The User has been deleted.',
+          icon: 'success',
+          background: '#0f172a',
+          color: '#d1d5db',
+        })
+        deleteUser(id)
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: 'Cancelled',
+          text: 'The user is safe',
+          icon: 'error',
+          background: '#0f172a',
+          color: '#d1d5db',
+        })
+      }
+    })
+  }
+
   const deleteUser = (id) => {
     axios
       .delete(`https://users-crud1.herokuapp.com/users/${id}/`)
@@ -31,6 +66,10 @@ function App() {
     getUsers()
   }, [])
 
+  const unSelect = () => {
+    setSelected(null)
+  }
+
   // console.log(selected)
 
   return (
@@ -41,11 +80,20 @@ function App() {
     >
       <UsersList
         users={users}
-        deleteUser={deleteUser}
+        deleteModal={deleteModal}
         setAdd={setAdd}
         select={select}
+        selected={selected}
       />
-      {add && <UsersForm getUsers={getUsers} setAdd={setAdd} />}
+      {add && (
+        <UsersForm
+          getUsers={getUsers}
+          setAdd={setAdd}
+          selected={selected}
+          setSelected={setSelected}
+          unSelect={unSelect}
+        />
+      )}
       <AddBtn add={add} setAdd={setAdd} />
     </div>
   )
