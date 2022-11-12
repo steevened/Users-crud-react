@@ -5,6 +5,8 @@ import AddBtn from './components/AddBtn'
 import UsersList from './components/UsersList'
 import Swal from 'sweetalert2'
 import UsersForm from './components/UsersForm'
+import Background from './components/Background'
+import Ul from './components/Ul'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -73,11 +75,7 @@ function App() {
   // console.log(selected)
 
   return (
-    <div
-      className={`min-h-screen relative bg-gradient-to-b from-gray-900 p-3 to-gray-800 overflow-hidden  ${
-        add && 'overflow-y-hidden'
-      }`}
-    >
+    <Background add={add}>
       <UsersList
         users={users}
         deleteModal={deleteModal}
@@ -95,7 +93,8 @@ function App() {
         />
       )}
       <AddBtn add={add} setAdd={setAdd} />
-    </div>
+      <Ul />
+    </Background>
   )
 }
 

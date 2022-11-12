@@ -55,7 +55,7 @@ const UsersForm = ({ getUsers, setAdd, selected, unSelect }) => {
     alert()
   }
 
-  console.log(selected)
+  // console.log(selected)
 
   return (
     <div className='overflow-y-auto bg-slate-900/70 fixed top-0 left-0 right-0 bottom-0 overflow-x-hidden jumper z-10'>
