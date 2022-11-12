@@ -9,6 +9,7 @@ import UsersForm from './components/UsersForm'
 function App() {
   const [users, setUsers] = useState([])
   const [add, setAdd] = useState(false)
+  const [selected, setSelected] = useState(null)
 
   const getUsers = () => {
     axios
@@ -22,11 +23,15 @@ function App() {
       .then((res) => getUsers())
   }
 
+  const select = (user) => {
+    setSelected(user)
+  }
+
   useState(() => {
     getUsers()
   }, [])
 
-  // console.log(add)
+  // console.log(selected)
 
   return (
     <div
@@ -34,7 +39,12 @@ function App() {
         add && 'overflow-y-hidden'
       }`}
     >
-      <UsersList users={users} deleteUser={deleteUser} />
+      <UsersList
+        users={users}
+        deleteUser={deleteUser}
+        setAdd={setAdd}
+        select={select}
+      />
       {add && <UsersForm getUsers={getUsers} setAdd={setAdd} />}
       <AddBtn add={add} setAdd={setAdd} />
     </div>

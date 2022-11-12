@@ -31,12 +31,18 @@ const UsersForm = ({ getUsers, setAdd }) => {
   }
 
   return (
-    <div className='overflow-y-auto bg-slate-900/80 fixed top-0 left-0 right-0 bottom-0 overflow-x-hidden jumper'>
+    <div className='overflow-y-auto bg-slate-900/70 fixed top-0 left-0 right-0 bottom-0 overflow-x-hidden jumper z-10'>
+      <div
+        className='fixed top-0 left-0 right-0 bottom-0 z-20'
+        onClick={() => setAdd(false)}
+      ></div>
       <form
         onSubmit={handleSubmit(submit)}
-        className='bg-slate-900 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-5 rounded-[5px] shadow-lg shadow-slate-900 w-[400px] z-20  md:w-[512px] h-[345px] lg-h-[352px] pb-0  transition-transform'
+        className='bg-slate-900 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-5 rounded-[5px] shadow-lg shadow-slate-900 w-[400px] z-30  md:w-[512px] h-[345px] lg-h-[352px] pb-0  transition-transform '
       >
-        <h2 className='text-3xl text-center text-gray-300 py-3'>Add User</h2>
+        <h2 className='text-3xl text-center text-gray-300 py-3 font-bold'>
+          Add User
+        </h2>
         <div className='w-full flex flex-col md:flex-row gap-3 md:gap-3 '>
           <input
             className='w-full px-2 py-[2px] bg-slate-700 rounded text-gray-300 placeholder:text-gray-300 text-center focus:outline-none '
@@ -81,9 +87,16 @@ const UsersForm = ({ getUsers, setAdd }) => {
             required
           />
         </div>
-        <div className='grid place-content-center text-gray-300 font-bold mt-3 w-full md:text-xl'>
+        <div className='grid grid-flow-col gap-3 place-content-center text-gray-300 font-bold mt-3 w-full md:text-xl'>
           <button className='py-[3px] px-6 rounded shadow-md shadow-gray-900 bg-sky-900 mt-1 md:mt-5 '>
             Set
+          </button>
+          <button
+            className='py-[3px] px-3 rounded shadow-md shadow-gray-900 bg-red-900 mt-1 md:mt-5'
+            type='submit'
+            onClick={() => setAdd(false)}
+          >
+            Cancel
           </button>
         </div>
       </form>

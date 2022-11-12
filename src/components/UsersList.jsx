@@ -1,12 +1,12 @@
 import React from 'react'
 
-const UsersList = ({ users, deleteUser }) => {
+const UsersList = ({ users, deleteUser, setAdd, select }) => {
   return (
     <ul className='text-gray-300  px-5 py-3 mx-2  flex flex-col  gap-5'>
       {users?.map((user) => (
         <li
           key={user?.id}
-          className='bg-slate-700/60 shadow-neutral-900 shadow-lg px-5 flex items-center justify-between py-2 rounded'
+          className='bg-slate-700/60 shadow-slate-900  px-5 flex items-center justify-between py-2 rounded shadow-md  hover:scale-[1.008] hover:shadow-lg transition-all'
         >
           <div>
             <h2 className='text-2xl font-bold'>
@@ -32,7 +32,13 @@ const UsersList = ({ users, deleteUser }) => {
             >
               <i className='fa-regular fa-trash-can'></i>
             </button>
-            <button className='text-sky-700'>
+            <button
+              onClick={() => {
+                setAdd(true)
+                select(user)
+              }}
+              className='text-sky-700'
+            >
               <i className='fa-regular fa-pen-to-square'></i>
             </button>
           </div>
