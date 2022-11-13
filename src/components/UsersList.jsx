@@ -2,12 +2,12 @@ import React from 'react'
 
 const UsersList = ({ users, deleteModal, setAdd, select, selected }) => {
   return (
-    <ul className='text-gray-300  px-5 py-3 mx-2  flex flex-col mt-6  gap-5 z-10'>
+    <ul className='text-gray-300  px-5 py-3 mx-2 grid md:grid-cols-2  mt-6  gap-5 z-10'>
       {users?.map((user) => (
         <li
           key={user?.id}
           className={`${
-            selected?.id === user.id ? 'animate-pulse' : ''
+            selected?.id === user.id ? 'animate-ping' : ''
           }bg-gradient-to-r to-slate-700/90 from-slate-700/10 shadow-slate-900  px-5 flex items-center justify-between py-2 rounded shadow-lg`}
         >
           <div>

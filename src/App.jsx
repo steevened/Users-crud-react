@@ -72,8 +72,6 @@ function App() {
     setSelected(null)
   }
 
-  // console.log(selected)
-
   return (
     <Background add={add}>
       <UsersList

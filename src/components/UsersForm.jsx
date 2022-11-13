@@ -68,7 +68,7 @@ const UsersForm = ({ getUsers, setAdd, selected, unSelect }) => {
       ></div>
       <form
         onSubmit={handleSubmit(submit)}
-        className='bg-slate-900 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-5 rounded-[5px] shadow-lg shadow-slate-900 w-[400px] z-30  md:w-[512px] h-[345px] lg-h-[352px] pb-0  transition-transform '
+        className='bg-slate-900 relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-5 rounded-[5px] shadow-lg shadow-slate-900 w-[400px] z-30  md:w-[512px] h-[345px] lg-h-[352px] pb-0  transition-transform'
       >
         <h2 className='text-3xl text-center text-gray-300 py-3 font-bold'>
           {selected ? 'Edit User' : 'Add User'}
