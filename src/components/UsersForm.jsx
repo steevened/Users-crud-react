@@ -122,7 +122,7 @@ const UsersForm = ({ getUsers, setAdd, selected, unSelect }) => {
             Set
           </button>
           <button
-            className='py-[3px] px-3 rounded shadow-md shadow-gray-900 bg-red-900 mt-1 md:mt-5'
+            className='py-[3px] px-3 rounded shadow-md shadow-gray-900 bg-gray-700 mt-1 md:mt-5'
             type='submit'
             onClick={() => {
               setAdd(false)
