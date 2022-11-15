@@ -2,7 +2,7 @@ import React from 'react'
 
 const UsersList = ({ users, deleteModal, setAdd, select, selected }) => {
   return (
-    <ul className='text-gray-300  px-5 py-3 mx-2 grid md:grid-cols-2  mt-6  gap-5 z-10'>
+    <ul className='text-gray-300 px-5 py-3 mx-2 grid md:grid-cols-2  mt-24  gap-5 z-10'>
       {users?.map((user) => (
         <li
           key={user?.id}
@@ -14,7 +14,7 @@ const UsersList = ({ users, deleteModal, setAdd, select, selected }) => {
             <h2 className='text-2xl font-bold'>
               {user?.first_name} {user.last_name}
             </h2>
-            <h3 className='mt-2'>
+            <h3 className='mt-2 text-sm md:text-base'>
               <span className='mr-2 text-sky-700'>
                 <i className='fa-regular fa-envelope'></i>
               </span>

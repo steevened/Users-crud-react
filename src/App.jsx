@@ -7,6 +7,9 @@ import Swal from 'sweetalert2'
 import UsersForm from './components/UsersForm'
 import Background from './components/Background'
 import Ul from './components/Ul'
+import { HashRouter, Route, Router, Routes } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import About from './components/About'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -73,26 +76,39 @@ function App() {
   }
 
   return (
-    <Background add={add}>
-      <UsersList
-        users={users}
-        deleteModal={deleteModal}
-        setAdd={setAdd}
-        select={select}
-        selected={selected}
-      />
-      {add && (
-        <UsersForm
-          getUsers={getUsers}
-          setAdd={setAdd}
-          selected={selected}
-          setSelected={setSelected}
-          unSelect={unSelect}
-        />
-      )}
-      <AddBtn add={add} setAdd={setAdd} />
-      <Ul />
-    </Background>
+    <HashRouter>
+      <Background>
+        <Navbar />
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <div>
+                <UsersList
+                  users={users}
+                  deleteModal={deleteModal}
+                  setAdd={setAdd}
+                  select={select}
+                  selected={selected}
+                />
+                {add && (
+                  <UsersForm
+                    getUsers={getUsers}
+                    setAdd={setAdd}
+                    selected={selected}
+                    setSelected={setSelected}
+                    unSelect={unSelect}
+                  />
+                )}
+                <AddBtn add={add} setAdd={setAdd} />
+                <Ul />
+              </div>
+            }
+          />
+          <Route path='/about' element={<About />} />
+        </Routes>
+      </Background>
+    </HashRouter>
   )
 }
 
