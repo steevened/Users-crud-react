@@ -3,7 +3,7 @@ import Background from './Background'
 
 const About = () => {
   return (
-    <div className='absolute text-slate-200 top-1/2 left-1/2 w-5/6 bg-gradient-to-r to-slate-700/90 from-slate-700/10 text-center shadow-xl shadow-slate-900 rounded-md h-2/4 px-6 py-10 -translate-x-1/2 -translate-y-1/2 max-w-[512px]'>
+    <div className='absolute top-1/2 left-1/2 w-5/6  text-center shadow-lg shadow-neutral rounded-box bg-base-300 h-2/4 px-6 py-10 -translate-x-1/2 -translate-y-1/2 max-w-[512px]'>
       <h2 className=' text-2xl md:text-3xl font-bold '>USER'S CRUD</h2>
       <h3 className='text-xl md:text-2xl mt-4'>Version 1.0.0</h3>
       <h3 className='text-lg md:text-xl mt-2'>Made by Steven Alvarado</h3>

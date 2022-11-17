@@ -101,7 +101,6 @@ function App() {
                   />
                 )}
                 <AddBtn add={add} setAdd={setAdd} />
-                <Ul />
               </div>
             }
           />

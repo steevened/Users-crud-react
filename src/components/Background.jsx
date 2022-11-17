@@ -3,7 +3,7 @@ import React from 'react'
 const Background = ({ children, add }) => {
   return (
     <div
-      className={`min-h-screen md:px-10 relative bg-slate-900/95 overflow-hidden  ${
+      className={`min-h-screen relative overflow-hidden bg-base-300 ${
         add && 'overflow-y-hidden'
       }`}
     >
