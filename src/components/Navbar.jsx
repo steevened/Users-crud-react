@@ -12,8 +12,8 @@ const Navbar = () => {
           </h1>
         </div>
         <div className='navbar-end '>
-          <div className='dropdown'>
-            <label tabIndex={0} className='btn btn-ghost btn-circle'>
+          <div className='dropdown dropdown-end dropdown-hover'>
+            <label tabIndex={0} className='btn btn-ghost btn-circle '>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-5 w-5'
@@ -31,8 +31,11 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className='menu menu-compact dropdown-content mt-3 p-2  bg-base-100 rounded-box w-44 right-0 shadow shadow-base-300 '
+              className='menu menu-compact dropdown-content  p-2  bg-base-100 rounded-box w-44 right-0 shadow shadow-base-300 '
             >
+              <li onClick={() => navigate('/')}>
+                <a className='text-lg w-full justify-center'>Users</a>
+              </li>
               <li onClick={() => navigate('/about')}>
                 <a className='text-lg w-full justify-center'>About</a>
               </li>
